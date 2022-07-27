@@ -1,15 +1,21 @@
-const Slides = document.querySelectorAll(".slide")
+function slidesPlugin(activeSlide) {
+    const Slides = document.querySelectorAll(".slide")
 
-for (const slide of Slides) {
-    slide.addEventListener("click", () => {
-        clearActiveClasses()
+    Slides[activeSlide].classList.add("active")
 
-        slide.classList.add("active")
-    })
+    for (const slide of Slides) {
+        slide.addEventListener("click", () => {
+            clearActiveClasses()
+
+            slide.classList.add("active")
+        })
+    }
+
+    function clearActiveClasses() {
+        Slides.forEach((slide) => {
+            slide.classList.remove("active")
+        })
+    }
 }
 
-function clearActiveClasses() {
-    Slides.forEach((slide) => {
-        slide.classList.remove("active")
-    })
-}
+slidesPlugin(0)
